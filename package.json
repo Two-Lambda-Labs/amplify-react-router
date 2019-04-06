@@ -1,0 +1,38 @@
+{
+  "name": "amplify-react-router",
+  "version": "1.0.0",
+  "description": "AWS Amplify's Auth wrapped with reach router",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Two-Lambda-Labs/amplify-react-router.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Kyle Gray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Two-Lambda-Labs/amplify-react-router/issues"
+  },
+  "homepage": "https://github.com/Two-Lambda-Labs/amplify-react-router#readme",
+  "peerDependencies": {
+    "@reach/router": "^1.2.1",
+    "aws-amplify-react": "^2.3.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "aws-amplify": "^1.1.24"
+  },
+  "devDependencies": {
+    "eslint-config-availity": "^4.0.2",
+    "@reach/router": "^1.2.1",
+    "aws-amplify-react": "^2.3.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "aws-amplify": "^1.1.24"
+  }
+}
