@@ -5,7 +5,7 @@ Having to rely on local `authState` is a pain the butt when you want to use a ro
 
 ### Installation
 ```bash
-npm install amplify-react-router --save
+npm install amplify-react-router aws-amplify-react aws-amplify @reach/router --save
 ```
 
 ### Usage
