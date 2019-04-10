@@ -2,13 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Authenticator } from "aws-amplify-react"; // or 'aws-amplify-react-native';
 import { Router, navigate } from "@reach/router";
-
-const reservedRoutes = [
-  "sign-in",
-  "sign-up",
-  "forgot-password",
-  "confirm-signup"
-]
+import { reservedRoutes, getAuthComponent } from "./helpers";
 
 // Used for converting the authState to url friendly name
 const toKebabCase = str =>
@@ -26,33 +20,56 @@ AuthorizedApp.propTypes = {
 };
 
 // The Component
-const AmplifyRouter = ({ children, componentOverrides, homeRoute = "/", ...props }) => (
-  <Authenticator
-    authState={toCamelCase(window.location.pathname.substring(1))}
-    onStateChange={authState => {
-      const kebabAuthState = toKebabCase(authState);
-      const currentRoute = window.location.pathname.substring(1);
-      if (authState === "signedIn") {
-        navigate(
-          reservedRoutes.find(route => route === currentRoute)
-            ? homeRoute
-            : window.location.pathname
-        )
-      } else {
-        navigate(`/${kebabAuthState}`)
-      }
-    }}
-    {...props}
-  >
-    {componentOverrides && componentOverrides.map((Tag,key) => <Tag key={key}/>)}
-    <AuthorizedApp>{children}</AuthorizedApp>
-  </Authenticator>
-);
+const AmplifyRouter = ({
+  children,
+  componentOverrides,
+  homeRoute = "/",
+  hide = [],
+  ...props
+}) => {
+  const overridenComponents = [...hide];
+
+  const overrideChildren =
+    componentOverrides &&
+    componentOverrides.map((Tag, key) => {
+      const instance = <Tag key={key} />;
+      overridenComponents.push(
+        getAuthComponent(Object.getPrototypeOf(instance.constructor).name)
+      );
+
+      return instance;
+    });
+
+  return (
+    <Authenticator
+      authState={toCamelCase(window.location.pathname.substring(1))}
+      onStateChange={authState => {
+        const kebabAuthState = toKebabCase(authState);
+        const currentRoute = window.location.pathname.substring(1);
+        if (authState === "signedIn") {
+          navigate(
+            reservedRoutes.find(route => route === currentRoute)
+              ? homeRoute
+              : window.location.pathname
+          );
+        } else {
+          navigate(`/${kebabAuthState}`);
+        }
+      }}
+      hide={overridenComponents}
+      {...props}
+    >
+      {overrideChildren}
+      <AuthorizedApp>{children}</AuthorizedApp>
+    </Authenticator>
+  );
+};
 
 AmplifyRouter.propTypes = {
   children: PropTypes.node,
   componentOverrides: PropTypes.array,
-  homeRoute: PropTypes.string
+  homeRoute: PropTypes.string,
+  hide: PropTypes.array
 };
 
 export default AmplifyRouter;
