@@ -1,3 +1,6 @@
 {
-    "extends": "availity/browser"
+    "extends": "availity/browser",
+    "rules": {
+        "react/no-array-index-key":0
+    }
 }
