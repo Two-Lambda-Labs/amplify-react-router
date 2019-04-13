@@ -19,7 +19,9 @@ export const reservedRoutes = [
   "forgot-password",
   "confirm-signup",
   "require-new-password",
-  "verify-contact"
+  "verify-contact",
+  "loading",
+  "signed-up"
 ];
 
 export const getAuthComponent = proto => authComponents.find(component => proto instanceof component);
