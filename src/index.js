@@ -33,7 +33,7 @@ const AmplifyRouter = ({
     componentOverrides &&
     componentOverrides.map((Tag, key) => {
       overridenComponents.push(
-        getAuthComponent(Object.getPrototypeOf(Tag).name)
+        getAuthComponent(Tag.prototype)
       );
 
       return <Tag key={key} />;
