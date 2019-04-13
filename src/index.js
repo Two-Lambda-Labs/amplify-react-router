@@ -22,7 +22,7 @@ AuthorizedApp.propTypes = {
 // The Component
 const AmplifyRouter = ({
   children,
-  componentOverrides,
+  componentOverrides = [],
   homeRoute = "/",
   hide = [],
   ...props
@@ -30,14 +30,12 @@ const AmplifyRouter = ({
   const overridenComponents = [...hide];
 
   const overrideChildren =
-    componentOverrides &&
     componentOverrides.map((Tag, key) => {
       overridenComponents.push(
         getAuthComponent(Tag.prototype)
       );
-
       return <Tag key={key} />;
-    });
+    }) || [];
 
   return (
     <Authenticator
