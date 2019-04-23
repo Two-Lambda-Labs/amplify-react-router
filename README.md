@@ -3,6 +3,7 @@
 
 ![NPM](https://img.shields.io/badge/npm-v1.0.12-blue.svg) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 ![Code Style](https://camo.githubusercontent.com/c83b8df34339bd302b7fd3fbb631f99ba25f87f8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d70726574746965722d6666363962342e737667)
+[![CircleCI](https://circleci.com/gh/Two-Lambda-Labs/amplify-react-router.svg?style=shield)](https://circleci.com/gh/Two-Lambda-Labs/amplify-react-router)
 
 Having to rely on local `authState` is a pain the butt when you want to use a router as well as overriding the default components. This component makes that even easier now.
 
