@@ -1,6 +1,6 @@
 {
   "name": "amplify-react-router",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "AWS Amplify's Auth wrapped with reach router",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
