@@ -18,7 +18,7 @@ export const reservedRoutes = [
   "sign-in",
   "sign-up",
   "forgot-password",
-  "confirm-signup",
+  "confirm-sign-up",
   "require-new-password",
   "verify-contact",
   "loading"
