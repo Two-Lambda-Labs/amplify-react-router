@@ -7,7 +7,7 @@ import { reservedRoutes, getAuthComponent, getInitAuthState } from "./helpers"
 const toKebabCase = str => str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
 
 // Wrapper for the Authorized Router
-const AuthorizedApp = ({ authState, children }) => authState === "signedIn" ? <Router>{children}</Router> : null
+const AuthorizedApp = ({ authState, children, ...routerProps }) => authState === "signedIn" ? <Router {...routerProps}>{children}</Router> : null
 
 AuthorizedApp.propTypes = {
   children: PropTypes.node,
@@ -24,6 +24,7 @@ const AmplifyRouter = ({
   componentOverrides,
   homeRoute = "/",
   hide = [],
+  routerProps,
   ...props
 }) => {
   const overridenComponents = [...hide]
@@ -64,7 +65,7 @@ const AmplifyRouter = ({
       {...props}
     >
       {overrideChildren}
-      <AuthorizedApp>{children}</AuthorizedApp>
+      <AuthorizedApp {...routerProps}>{children}</AuthorizedApp>
     </Authenticator>
   )
 }
@@ -73,7 +74,8 @@ AmplifyRouter.propTypes = {
   children: PropTypes.node,
   componentOverrides: PropTypes.array,
   homeRoute: PropTypes.string,
-  hide: PropTypes.array
+  hide: PropTypes.array,
+  routerProps: PropTypes.object
 }
 
 export default AmplifyRouter
