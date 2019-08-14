@@ -15,7 +15,7 @@ npm install amplify-react-router aws-amplify-react aws-amplify @reach/router --s
 ### Usage
 ```javascript
 import React from 'react';
-import AmplifyRouter from 'amplify-reacr-router';
+import AmplifyRouter from 'amplify-react-router';
 
 import MySignIn from './SignIn';
 import Page from './Page';
