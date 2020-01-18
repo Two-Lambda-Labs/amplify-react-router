@@ -9,14 +9,14 @@ Having to rely on local `authState` is a pain the butt when you want to use a ro
 
 ### Installation
 ```bash
-npm install amplify-react-router aws-amplify-react aws-amplify @reach/router --save
+yarn add amplify-react-router aws-amplify-react aws-amplify react-router-dom
 ```
 
 ### Usage
-```javascript
+```jsx
 import React from 'react';
 import AmplifyRouter from 'amplify-react-router';
-
+import { Router, navigate } from '@reach/router';
 import MySignIn from './SignIn';
 import Page from './Page';
 import awsExports from './aws-exports';
@@ -25,10 +25,13 @@ export default () => (
     <AmplifyRouter
         amplifyConfig={awsExports}
         homeRoute="/home"
+        navigate={navigate}
         componentOverrides={[MySignIn]}
     >
+    <Router>
         <Page path="/home" />
-    </AmplifyRouter>
+    </Router>
+</AmplifyRouter>
 );
 
 ```
@@ -46,3 +49,4 @@ All the base [Authenticator](https://aws-amplify.github.io/docs/js/authenticatio
 | --- | --- | --- | --- | 
 |**`componentOverrides`**| Array(Component)| Optional | The auth components you want to override |
 |**`homeRoute`**| String | / | The home route to navigate to when once signed in 
+|**`navigate`**| (route: string) => void | | Function that takes new route to optionally push to history api for router.

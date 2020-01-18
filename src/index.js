@@ -1,13 +1,12 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { Authenticator } from "aws-amplify-react" // or 'aws-amplify-react-native';
-import { Router, navigate } from "@reach/router"
 import { reservedRoutes, getAuthComponent, getInitAuthState } from "./helpers"
 // Used for converting the authState to url friendly name
 const toKebabCase = str => str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()
 
 // Wrapper for the Authorized Router
-const AuthorizedApp = ({ authState, children, ...routerProps }) => authState === "signedIn" ? <Router {...routerProps}>{children}</Router> : null
+const AuthorizedApp = ({ authState, children }) => authState === "signedIn" ? children : null
 
 AuthorizedApp.propTypes = {
   children: PropTypes.node,
@@ -23,8 +22,8 @@ const AmplifyRouter = ({
   children,
   componentOverrides,
   homeRoute = "/",
+  navigate,
   hide = [],
-  routerProps,
   ...props
 }) => {
   const overridenComponents = [...hide]
@@ -65,7 +64,7 @@ const AmplifyRouter = ({
       {...props}
     >
       {overrideChildren}
-      <AuthorizedApp {...routerProps}>{children}</AuthorizedApp>
+      <AuthorizedApp>{children}</AuthorizedApp>
     </Authenticator>
   )
 }
